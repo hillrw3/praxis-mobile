@@ -1,5 +1,6 @@
 import React from 'react'
 import {SectionList, StyleSheet, Text, View} from 'react-native'
+import {Habit} from "./Habit"
 
 export default class App extends React.Component {
 
@@ -18,13 +19,14 @@ export default class App extends React.Component {
     const {todo, completed} = this.state.habits
     return (
       <View style={styles.container}>
+        <Text style={styles.header}>Praxis</Text>
         <SectionList
           sections={[
-            {title: 'To Do', data: todo},
-            {title: 'Completed', data: completed},
+            {title: 'To Do', data: todo, completed: false},
+            {title: 'Completed', data: completed, completed: true},
           ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.title}</Text>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+          renderItem={({item, i, section}) => <Habit habit={{...item, completed: section.completed}}/>}
           keyExtractor={(item, index) => index}
         />
       </View>
@@ -37,13 +39,13 @@ const styles = StyleSheet.create({
     padding: 16,
     marginTop: 32,
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'flex-start',
-    justifyContent: 'center',
+  },
+  header: {
+    fontSize: 28,
   },
   sectionHeader: {
     marginTop: 16,
-    color: 'blue',
-    fontSize: 16
-  }
+    fontSize: 20
+  },
 })
