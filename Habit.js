@@ -8,14 +8,14 @@ export class Habit extends React.Component {
   }
 
   render() {
-    const {habit} = this.props
+    const {habit, completeHabit} = this.props
 
     return (
       <View style={styles.habit}>
         <Text style={styles.title}>{habit.title}</Text>
         {
           !habit.completed ?
-            <Button title="✓" onPress={() => alert(`You completed ${habit.title}`)}/> :
+            <Button title="✓" onPress={() => completeHabit(habit)}/> :
             null
         }
       </View>
