@@ -2,7 +2,7 @@ import React from 'react'
 import {SectionList, StyleSheet, Text, View} from 'react-native'
 import {Habit} from "./Habit"
 
-const API_URL = "http://localhost:3000"
+const API_URL = process.env.API_URL || "http://localhost:3000"
 export default class App extends React.Component {
 
   constructor(props) {
